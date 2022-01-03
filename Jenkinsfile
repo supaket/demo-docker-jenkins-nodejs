@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-                label 'node'
+                docker {
+                    label 'node'
+                }
             }
             steps {
                 sh 'npm install'
