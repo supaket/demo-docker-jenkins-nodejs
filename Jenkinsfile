@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        jenkins-agent {
-            image 'node:lts-buster-slim'
-            args '-p 3000:3000'
-        }
-    }
+    agent jenkins-agent
     stages {
         stage('Build') {
             steps {
