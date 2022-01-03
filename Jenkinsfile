@@ -1,9 +1,6 @@
 pipeline {
     agent {
-        node {
-            image 'node:lts-buster-slim'
-            args '-p 3000:3000'
-        }
+        node
     }
     stages {
         stage('Build') {
