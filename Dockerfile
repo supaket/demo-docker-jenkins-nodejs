@@ -1,5 +1,5 @@
 # Extending image
-FROM node:alpine
+FROM node:lts
 
 RUN apt-get update
 RUN apt-get upgrade -y
