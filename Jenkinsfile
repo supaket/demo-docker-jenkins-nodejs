@@ -7,7 +7,7 @@ node {
       sh 'git --version'
       echo "Branch: ${env.BRANCH_NAME}"
       sh 'which docker'
-      sh 'sudo docker -v'
+      sh 'docker -v'
       sh 'printenv'
     }
     stage('Build Docker test'){
