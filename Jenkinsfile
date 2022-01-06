@@ -24,7 +24,7 @@ node {
 //         sh 'docker tag react-app localhost:5000/react-app'
 //         sh 'docker push localhost:5000/react-app'
 //         sh 'docker rmi -f react-app localhost:5000/react-app'
-        sh 'docker run --rm react-app -p3000:3000'
+        sh 'docker run --rm -p3000:3000 react-app'
       }
     }
   }
