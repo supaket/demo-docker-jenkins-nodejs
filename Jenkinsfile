@@ -6,6 +6,7 @@ node {
     stage('Environment') {
       sh 'git --version'
       echo "Branch: ${env.BRANCH_NAME}"
+      echo " all env: ${env}"
       sh 'docker -v'
       sh 'printenv'
     }
@@ -20,10 +21,22 @@ node {
     }
     stage('Registry'){
       if(env.BRANCH_NAME == 'main'){
-        sh 'docker build -t react-app --no-cache .'
-        sh 'docker tag react-app localhost:5000/react-app'
-        sh 'docker push localhost:5000/react-app'
-        sh 'docker rmi -f react-app localhost:5000/react-app'
+        sh 'docker build -t react-app-${env.BRANCH_NAME} --no-cache .'
+        sh 'docker tag react-app-${env.BRANCH_NAME} localhost:5000/react-app-${env.BRANCH_NAME}'
+        sh 'docker push localhost:5000/react-app-${env.BRANCH_NAME}'
+        sh 'docker rmi -f react-app-${env.BRANCH_NAME} localhost:5000/react-app-${env.BRANCH_NAME}'
+      }
+      if(env.BRANCH_NAME == 'stage'){
+        sh 'docker build -t react-app-${env.BRANCH_NAME} --no-cache .'
+        sh 'docker tag react-app-${env.BRANCH_NAME} localhost:5000/react-app-${env.BRANCH_NAME}'
+        sh 'docker push localhost:5000/react-app-${env.BRANCH_NAME}'
+        sh 'docker rmi -f react-app-${env.BRANCH_NAME} localhost:5000/react-app-${env.BRANCH_NAME}'
+      }
+      if(env.BRANCH_NAME == 'main'){
+        sh 'docker build -t react-app-${env.BRANCH_NAME} --no-cache .'
+        sh 'docker tag react-app-${env.BRANCH_NAME} localhost:5000/react-app-${env.BRANCH_NAME}'
+        sh 'docker push localhost:5000/react-app-${env.BRANCH_NAME}'
+        sh 'docker rmi -f react-app-${env.BRANCH_NAME} localhost:5000/react-app-${env.BRANCH_NAME}'
       }
     }
   }
