@@ -18,7 +18,7 @@ node {
     stage('Clean Docker test'){
 //       sh 'docker rmi react-test'
     }
-    stage('Deploy'){
+    stage('Registry'){
       if(env.BRANCH_NAME == 'main'){
         sh 'docker build -t react-app --no-cache .'
         sh 'docker tag react-app localhost:5000/react-app'
