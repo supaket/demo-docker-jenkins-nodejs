@@ -22,10 +22,11 @@ node {
     }
     stage('Registry'){
       if(env.BRANCH_NAME == 'dev'){
-        sh 'docker build -t react-app-${env.BRANCH_NAME} --no-cache .'
-        sh 'docker tag react-app-${env.BRANCH_NAME} localhost:5000/react-app-${env.BRANCH_NAME}'
-        sh 'docker push localhost:5000/react-app-${env.BRANCH_NAME}'
-        sh 'docker rmi -f react-app-${env.BRANCH_NAME} localhost:5000/react-app-${env.BRANCH_NAME}'
+        name
+        sh 'docker build -t react-app-$BRANCH_NAME --no-cache .'
+        sh 'docker tag react-app-$BRANCH_NAME localhost:5000/react-app-${env.BRANCH_NAME}'
+        sh 'docker push localhost:5000/react-app-$BRANCH_NAME'
+        sh 'docker rmi -f react-app-$BRANCH_NAME localhost:5000/react-app-$BRANCH_NAME'
       }
       if(env.BRANCH_NAME == 'stage'){
         sh 'docker build -t react-app-${env.BRANCH_NAME} --no-cache .'
