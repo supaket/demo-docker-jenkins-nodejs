@@ -28,7 +28,7 @@ node {
         echo "docker rmi -f react-app-$BRANCH_NAME-$BUILD_ID localhost:5000/react-app-$BRANCH_NAME-$BUILD_ID"
       }
         if(env.BRANCH_NAME == 'stage'){
-          eho "docker build -t react-app-$BRANCH_NAME-$BUILD_ID --no-cache ."
+          echo "docker build -t react-app-$BRANCH_NAME-$BUILD_ID --no-cache ."
           echo "docker tag react-app-$BRANCH_NAME-$BUILD_ID localhost:5000/react-app-$BRANCH_NAME-$BUILD_ID"
           echo "docker push localhost:5000/react-app-$BRANCH_NAME-$BUILD_ID"
           echo "docker rmi -f react-app-$BRANCH_NAME-$BUILD_ID localhost:5000/react-app-$BRANCH_NAME-$BUILD_ID"
@@ -40,6 +40,12 @@ node {
         echo "docker rmi -f react-app-$BRANCH_NAME-$BUILD_ID localhost:5000/react-app-$BRANCH_NAME-$BUILD_ID"
       }
 
+    }
+
+    stage('Deploy') {
+      if(env.BRANCH_NAME == 'main'){
+          echo "deploy"
+      }
     }
   }
   catch (err) {
