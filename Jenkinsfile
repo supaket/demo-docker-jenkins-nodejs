@@ -42,6 +42,9 @@ node {
 
     }
 
+    stage('Deploy approval'){
+      input "Approve Deploy to prod?"
+  }
     stage('Deploy') {
       if(env.BRANCH_NAME == 'main'){
           echo "deploy"
